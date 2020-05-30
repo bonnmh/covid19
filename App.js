@@ -10,7 +10,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {Root} from '';
+import {Root} from 'navigator';
 
 const App = () => {
   return (

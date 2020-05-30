@@ -7,6 +7,7 @@ const Colors = {
   red_op: '#FFD6D8',
   green: '#00D200',
   green_op: '#CBFFD0',
+  mainColor: '#FF7500',
 };
 
 export {Colors};

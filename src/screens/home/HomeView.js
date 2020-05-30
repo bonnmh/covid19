@@ -1,47 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, Dimensions, ScrollView} from 'react-native';
-import {Block, Button, TextView} from 'components';
-import {Colors} from '../themes/color';
-const W = Dimensions.get('window').width;
-import Feather from 'react-native-vector-icons/Feather';
+import {ScrollView, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import Feather from 'react-native-vector-icons/Feather';
 
-const styles = StyleSheet.create({
-  img: {
-    width: '100%',
-    height: 300,
-  },
-  doctor: {
-    position: 'absolute',
-    top: 100,
-    left: 60,
-  },
-  wrapperimage: {
-    position: 'absolute',
-    bottom: 0,
-
-    alignSelf: 'center',
-    width: W,
-    height: 300,
-  },
-  bg: {
-    position: 'absolute',
-    width: 1000,
-    height: 1000,
-    top: -(930 - W / 2),
-    alignSelf: 'center',
-    borderRadius: 1000,
-    overflow: 'hidden',
-  },
-  containerHeader: {
-    position: 'relative',
-  },
-  map: {
-    borderRadius: 8,
-    marginTop: 15,
-    padding: 15,
-  },
-});
+import {type Props} from './types';
+import {Block, TextView, Button} from 'components';
+import {Colors} from 'themes/color';
+import useStyles from './HomeStyle';
 
 const ItemDot = ({color1, color2, num, title}) => {
   return (
@@ -72,8 +37,8 @@ const ItemDot = ({color1, color2, num, title}) => {
     </Block>
   );
 };
-
-const HomeScreen = () => {
+const HomeView = (props: Props & ViewProps) => {
+  const styles = useStyles();
   const navigation = useNavigation();
   return (
     <ScrollView style={{flex: 1}}>
@@ -163,4 +128,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default HomeView;

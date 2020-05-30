@@ -5,10 +5,10 @@
 
 import React from 'react';
 import {type Props} from './types';
-import DetailContainer from './DetailContainer';
+import DetailContainer from './DetailContainer';
 
-const Account = (props: Props) => {
+const Detail = (props: Props) => {
   return <DetailContainer {...props} />;
 };
 
-export default Account;
+export default Detail;

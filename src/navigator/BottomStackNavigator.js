@@ -1,0 +1,61 @@
+import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Home from 'screens/home';
+import Detail from 'screens/detail';
+import {Colors} from 'themes/color';
+import {BottomIcons} from 'icons';
+import {Image} from 'react-native';
+import {Scale} from 'components';
+
+const Tab = createBottomTabNavigator();
+
+const BottomTabNavigator = () => {
+  const tabBarOptions = {
+    activeTintColor: Colors.blue,
+    inactiveTintColor: 'gray',
+    labelStyle: {
+      textTransform: 'uppercase',
+      fontWeight: '600',
+      fontSize: Scale(9),
+    },
+    style: {},
+  };
+
+  const tabBarIcon = (props, routeName) => {
+    const {color} = props;
+
+    let icon = '';
+
+    switch (routeName) {
+      case 'Home':
+        icon = BottomIcons.home;
+        break;
+      case 'Detail':
+        icon = BottomIcons.search;
+        break;
+    }
+
+    return (
+      <Image
+        source={icon}
+        style={{tintColor: color, height: Scale(18), width: Scale(18)}}
+      />
+    );
+  };
+
+  const screenOptions = ({route}) => {
+    const {name} = route;
+    return {
+      tabBarIcon: (props) => tabBarIcon(props, name),
+    };
+  };
+
+  return (
+    <Tab.Navigator tabBarOptions={tabBarOptions} screenOptions={screenOptions}>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Detail" component={Detail} />
+    </Tab.Navigator>
+  );
+};
+
+export default BottomTabNavigator;

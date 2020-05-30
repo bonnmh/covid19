@@ -1,10 +1,4 @@
-/**
- * @format
- * @flow
- */
-
 import {StyleSheet, Dimensions} from 'react-native';
-
 const W = Dimensions.get('window').width;
 const useStyles = () => {
   return StyleSheet.create({
@@ -15,7 +9,7 @@ const useStyles = () => {
     doctor: {
       position: 'absolute',
       top: 100,
-      left: -30,
+      left: 60,
     },
     wrapperimage: {
       position: 'absolute',
@@ -42,30 +36,6 @@ const useStyles = () => {
       marginTop: 15,
       padding: 15,
     },
-
-    img_item: {
-      width: (1.2 * W) / 3,
-      height: (1.2 * W) / 3,
-    },
-    field_con: {
-      // marginLeft: W / 2,
-      position: 'absolute',
-      width: (2 * W) / 3,
-      left: W / 3 + 10,
-      top: 10,
-      paddingVertical: 10,
-    },
-    textDesc: {
-      lineHeight: 20,
-      marginTop: 10,
-      maxWidth: (2 * W) / 3.4,
-    },
-    btn: {
-      position: 'absolute',
-      bottom: 10,
-      right: 10,
-    },
   });
 };
-
 export default useStyles;

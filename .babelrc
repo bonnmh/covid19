@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "module:metro-react-native-babel-preset"
+  ],
+  "retainLines": true,
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "cwd": "babelrc",
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "components": "./src/components",
+          "themes": "./src/themes",
+          "images": "./src/images"
+        }
+      }
+    ]
+  ]
+}

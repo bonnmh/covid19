@@ -44,6 +44,7 @@ const Block = ({
   justifyContent,
   borderRadius,
   shadow,
+  mgTop,
   ...props
 }) => {
   const styleComponent = [
@@ -63,6 +64,7 @@ const Block = ({
     paddingHorizontal && {paddingHorizontal},
     middle && {alignItems: 'center'},
     borderRadius && {borderRadius},
+    mgTop && {marginTop: mgTop},
     shadow && {
       shadowOpacity: 0.12,
       shadowRadius: 15,

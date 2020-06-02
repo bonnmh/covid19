@@ -1,11 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from 'screens/home';
+
 import Detail from 'screens/detail';
 import {Colors} from 'themes/color';
 import {BottomIcons} from 'icons';
 import {Image} from 'react-native';
 import {Scale} from 'components';
+import HomeStackNavigator, {
+  HomeStackNavigatorContext,
+} from './HomeStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +55,7 @@ const BottomTabNavigator = () => {
 
   return (
     <Tab.Navigator tabBarOptions={tabBarOptions} screenOptions={screenOptions}>
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={HomeStackNavigatorContext} />
       <Tab.Screen name="Detail" component={Detail} />
     </Tab.Navigator>
   );

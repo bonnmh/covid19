@@ -4,9 +4,12 @@ import {useNavigation} from '@react-navigation/native';
 import Feather from 'react-native-vector-icons/Feather';
 
 import {type Props} from './types';
-import {Block, TextView, Button} from 'components';
+import {Block, TextView, Button, Loading} from 'components';
 import {Colors} from 'themes/color';
 import useStyles from './HomeStyle';
+import navigator from 'navigator/navigator';
+import APIInstance from 'services/APIInstance';
+import {providers, actions} from 'context';
 
 const ItemDot = ({color1, color2, num, title}) => {
   return (
@@ -40,8 +43,27 @@ const ItemDot = ({color1, color2, num, title}) => {
 const HomeView = (props: Props & ViewProps) => {
   const styles = useStyles();
   const navigation = useNavigation();
+  const dispatch = providers.home.useHomeDispatch();
+  const {data: dataState, loadData} = providers.home.useHomeState();
+  React.useEffect(() => {
+    dispatch(actions.home.setLoadData(true));
+    getData();
+    console.log('dataState', dataState);
+  }, []);
+  const getData = async () => {
+    const data = await APIInstance.get('live/country/viet-nam');
+    console.log(data);
+    dispatch(actions.home.setHome(data.data));
+  };
+  console.log(
+    'dataState[dataState.length - 1].Country',
+    dataState[dataState.length - 1]?.Country,
+  );
+  if (loadData) {
+    return <Loading />;
+  }
   return (
-    <ScrollView style={{flex: 1}}>
+    <ScrollView contentContainerStyle={{width: '100%'}}>
       <Block block color="#fafafa">
         <Block height={300} color={Colors.blue} style={styles.bg}>
           <Block style={styles.wrapperimage}>
@@ -80,7 +102,11 @@ const HomeView = (props: Props & ViewProps) => {
               <TextView h6>Case Update</TextView>
               <TextView>Newest update March 28</TextView>
             </Block>
-            <Button textColor={Colors.blue1}>See details</Button>
+            <Button
+              onPress={() => navigator.navigate('Case')}
+              textColor={Colors.blue1}>
+              See details
+            </Button>
           </Block>
           <Block
             color="#fff"
@@ -92,20 +118,20 @@ const HomeView = (props: Props & ViewProps) => {
             <ItemDot
               color1={Colors.carot_op}
               color2={Colors.carot}
-              num={1046}
+              num={dataState[dataState.length - 1]?.Confirmed}
               title={'Infected'}
             />
             <ItemDot
               color1={Colors.red_op}
               color2={Colors.red}
-              num={87}
+              num={dataState[dataState.length - 1]?.Deaths}
               title={'Deaths'}
             />
 
             <ItemDot
               color1={Colors.green_op}
               color2={Colors.green}
-              num={46}
+              num={dataState[dataState.length - 1]?.Recovered}
               title={'Recovered'}
             />
           </Block>
@@ -124,6 +150,10 @@ const HomeView = (props: Props & ViewProps) => {
           </Block>
         </Block>
       </Block>
+      <TextView>{dataState[dataState.length - 1]?.Country}</TextView>
+      {/* {dataState.map((e) => {
+        return <Block mgTop={10} color="red" height={100} width={'100%'} />;
+      })} */}
     </ScrollView>
   );
 };

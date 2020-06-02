@@ -11,12 +11,12 @@ export const Root = () => {
     <NavigationContainer ref={(ref) => navigator.setContainer(ref)}>
       <Stack.Navigator headerMode="none">
         <Stack.Screen
-          name="LoginStackNavigator"
-          component={LoginStackNavigator}
-        />
-        <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
+        />
+        <Stack.Screen
+          name="LoginStackNavigator"
+          component={LoginStackNavigator}
         />
       </Stack.Navigator>
     </NavigationContainer>

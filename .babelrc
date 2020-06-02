@@ -14,7 +14,12 @@
         "alias": {
           "components": "./src/components",
           "themes": "./src/themes",
-          "images": "./src/images"
+          "images": "./src/images",
+          "icons": "./src/icons",
+          "navigator": "./src/navigator",
+          "service": "./src/service",
+          "share": "./src/share-components",
+          "contain": "./src/contain"
         }
       }
     ]

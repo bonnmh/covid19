@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LoginStackNavigator from './LoginStackNavigator';
 import BottomTabNavigator from './BottomStackNavigator';
 import navigator from './navigator';
+import Search from 'screens/search';
 
 const Stack = createStackNavigator();
 export const Root = () => {
@@ -18,6 +19,7 @@ export const Root = () => {
           name="LoginStackNavigator"
           component={LoginStackNavigator}
         />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
   );

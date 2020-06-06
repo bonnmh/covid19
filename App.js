@@ -6,13 +6,46 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Root} from 'navigator';
+import {fcmService} from 'firebase/FCMService';
+import {localNotificationService} from 'firebase/LocalNotificationService';
 
 const App = () => {
+  useEffect(() => {
+    fcmService.registerAppWithFCM();
+    fcmService.register(onRegister, onNotification, onOpenNotification);
+    localNotificationService.configure(onOpenNotification);
+    return () => {
+      console.log('[App] unRegister');
+      fcmService.unRegister;
+      localNotificationService.unRegister;
+    };
+  }, []);
+  function onRegister(token) {
+    console.log('[App] onRegister', token);
+  }
+  function onNotification(notify) {
+    console.log('[App] onNotification', notify);
+    const options = {
+      soundName: 'default',
+      playSound: true,
+    };
+    localNotificationService.showNotification(
+      0,
+      notify.title,
+      notify.body,
+      notify,
+      options,
+    );
+  }
+  function onOpenNotification(notify) {
+    console.log('[App] onOpenNotification', notify);
+    alert('Open onOpenNotification', notify.body);
+  }
   return (
     <>
       <Root />

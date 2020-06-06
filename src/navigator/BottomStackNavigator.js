@@ -9,6 +9,7 @@ import {Scale} from 'components';
 import HomeStackNavigator, {
   HomeStackNavigatorContext,
 } from './HomeStackNavigator';
+import Animation from 'screens/animation';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,6 +37,9 @@ const BottomTabNavigator = () => {
       case 'Detail':
         icon = BottomIcons.search;
         break;
+      case 'Animation':
+        icon = BottomIcons.add;
+        break;
     }
 
     return (
@@ -57,6 +61,7 @@ const BottomTabNavigator = () => {
     <Tab.Navigator tabBarOptions={tabBarOptions} screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeStackNavigatorContext} />
       <Tab.Screen name="Detail" component={Detail} />
+      <Tab.Screen name="Animation" component={Animation} />
     </Tab.Navigator>
   );
 };

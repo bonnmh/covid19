@@ -1,4 +1,10 @@
-import {homeActions, homeReducer, homeTypes, homeProvider} from './home';
+import {
+  homeActions,
+  homeReducer,
+  homeTypes,
+  homeProvider,
+  homeSelectors,
+} from './home';
 
 const rootReducer = {
   home: homeReducer,
@@ -12,4 +18,7 @@ const actions = {
 const providers = {
   home: homeProvider,
 };
-export {rootReducer, types, actions, providers};
+const selectors = {
+  home: homeSelectors,
+};
+export {rootReducer, types, actions, providers, selectors};

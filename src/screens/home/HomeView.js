@@ -10,6 +10,7 @@ import useStyles from './HomeStyle';
 import navigator from 'navigator/navigator';
 import APIInstance from 'services/APIInstance';
 import {providers, actions} from 'context';
+import {dataTest} from 'context/home/selectors';
 
 const ItemDot = ({color1, color2, num, title}) => {
   return (
@@ -45,20 +46,15 @@ const HomeView = (props: Props & ViewProps) => {
   const navigation = useNavigation();
   const dispatch = providers.home.useHomeDispatch();
   const {data: dataState, loadData} = providers.home.useHomeState();
+
   React.useEffect(() => {
     dispatch(actions.home.setLoadData(true));
     getData();
-    console.log('dataState', dataState);
   }, []);
   const getData = async () => {
     const data = await APIInstance.get('live/country/viet-nam');
-    console.log(data);
     dispatch(actions.home.setHome(data.data));
   };
-  console.log(
-    'dataState[dataState.length - 1].Country',
-    dataState[dataState.length - 1]?.Country,
-  );
   if (loadData) {
     return <Loading />;
   }
@@ -150,10 +146,6 @@ const HomeView = (props: Props & ViewProps) => {
           </Block>
         </Block>
       </Block>
-      <TextView>{dataState[dataState.length - 1]?.Country}</TextView>
-      {/* {dataState.map((e) => {
-        return <Block mgTop={10} color="red" height={100} width={'100%'} />;
-      })} */}
     </ScrollView>
   );
 };
